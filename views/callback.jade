@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  if status
+    h1 Transaction Complete
+    p Thank you for your business.
+  else
+    h1 An error has occured.
+    p= errorMessage
