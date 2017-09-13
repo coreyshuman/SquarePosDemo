@@ -11,7 +11,7 @@
     function packageA() {
         if (validateClient()) {
             square.addNote("Package A");
-            square.setAmount(1.00);
+            square.setAmount(100);
             square.setClientId(inputClient.value);
             square.loadSquarePOS();
         }
@@ -20,7 +20,7 @@
     function packageB() {
         if (validateClient()) {
             square.addNote("Package B");
-            square.setAmount(1.00);
+            square.setAmount(200);
             square.setClientId(inputClient.value);
             square.loadSquarePOS();
         }
