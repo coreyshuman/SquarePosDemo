@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('squareposdemo:server');
 var https = require('https');
+var http = require('http');
 var fs = require('fs');
 
 /**
@@ -19,13 +20,14 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
-//var server = http.createServer(app);
-var server = https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/squarepos.shift3sandbox.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/squarepos.shift3sandbox.com/fullchain.pem')
-}, app);
-
+if (process.env.USE_HTTP || false) {
+    var server = http.createServer(app);
+} else {
+    var server = https.createServer({
+        key: fs.readFileSync('/etc/letsencrypt/live/squarepos.shift3sandbox.com/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/squarepos.shift3sandbox.com/fullchain.pem')
+    }, app);
+}
 
 /**
  * Listen on provided port, on all network interfaces.
